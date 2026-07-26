@@ -22,7 +22,8 @@ st.set_page_config(
 )
 
 DATA_PATH = Path(__file__).parent / "data" / "modes_action.csv"
-
+if not DATA_PATH.exists():
+    DATA_PATH = Path(__file__).parent / "modes_action.csv"
 RISK_ORDER = [
     "Très faible", "Faible", "Faible à modéré", "Modéré",
     "Modéré à élevé", "Élevé", "Très élevé",
@@ -48,22 +49,41 @@ CAT_ICONS = {
 st.markdown(
     """
     <style>
-    .block-container {padding-top: 2rem; max-width: 1400px;}
+    /* Claude-inspired Global Theme */
+    .stApp {
+        background-color: #fdfcf9;
+        color: #2d2b2a;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: "Georgia", "Times New Roman", serif !important;
+        color: #1a1918 !important;
+        font-weight: 500 !important;
+    }
+    .block-container {
+        padding-top: 2rem; 
+        max-width: 1000px; 
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    /* Components */
     .badge {display:inline-block; padding:2px 10px; border-radius:12px;
             color:#fff; font-size:0.75rem; font-weight:600; white-space:nowrap;}
     .code-chip {display:inline-block; padding:3px 12px; border-radius:6px;
-            background:#1f3864; color:#fff; font-weight:700; font-size:0.9rem;}
-    .card {border:1px solid #dfe3e8; border-radius:10px; padding:16px 18px;
-           margin-bottom:12px; background:#fff;}
-    .card h4 {margin:0 0 6px 0; font-size:1rem; color:#1f3864;}
-    .lbl {font-size:0.72rem; text-transform:uppercase; letter-spacing:.5px;
-          color:#8a94a0; font-weight:600; margin-top:8px;}
-    .val {font-size:0.92rem; color:#22272e; line-height:1.45;}
-    .flash {border:2px solid #1f3864; border-radius:14px; padding:30px 26px;
-            text-align:center; background:#f7f9fc; min-height:150px;}
-    .flash .big {font-size:1.35rem; font-weight:700; color:#1f3864; line-height:1.5;}
-    .flash .sub {font-size:0.8rem; color:#7a828c; text-transform:uppercase;
-                 letter-spacing:1px; margin-bottom:10px;}
+            background:#f0eee9; color:#2d2b2a; font-weight:600; font-size:0.9rem; border: 1px solid #e0ded9;}
+            
+    .card {border:1px solid #e8e6e1; border-radius:12px; padding:20px 24px;
+           margin-bottom:16px; background:#ffffff; box-shadow: 0 1px 2px rgba(0,0,0,0.02);}
+    .card h4 {margin:0 0 6px 0; font-size:1.1rem; color:#1a1918; font-family: "Georgia", serif;}
+    .lbl {font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px;
+          color:#8a8885; font-weight:600; margin-top:12px;}
+    .val {font-size:0.95rem; color:#2d2b2a; line-height:1.5;}
+    
+    .flash {border:1px solid #e8e6e1; border-radius:16px; padding:36px 30px;
+            text-align:center; background:#ffffff; min-height:160px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);}
+    .flash .big {font-size:1.6rem; font-weight:500; color:#1a1918; line-height:1.4; font-family: "Georgia", serif;}
+    .flash .sub {font-size:0.8rem; color:#8a8885; text-transform:uppercase;
+                 letter-spacing:1px; margin-bottom:12px;}
     </style>
     """,
     unsafe_allow_html=True,
